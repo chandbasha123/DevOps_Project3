@@ -1,0 +1,12 @@
+---
+- hosts: all
+  become: true
+  tasks:
+          - name: stop previous version docker
+            shell: docker stop webapp
+          - name: remove stopped container
+            shell: docker rm -f webapp
+          - name: remove docker images
+            shell: docker image rm -f sunnydevops007/devops_project: lates
+          - name: create docker container
+            shell: docker run -itd --name webapp -p 8090:8080 sunnydevops007@devops_project: latest
